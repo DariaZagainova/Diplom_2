@@ -1,7 +1,7 @@
 import pytest
 import allure
 from methods.order_methods import OrderMethod
-from data import OrderMessageMistake
+from data import OrderMessageMistake, INVALID_INGREDIENTS
 
 
 @allure.sub_suite('class TestOrderCreate: Создание заказа')
@@ -56,7 +56,7 @@ class TestOrderCreate:
     @allure.description('Нельзя создать заказ, если пользователь авторизован, но в заказе неверный хеш ингредиентов')
     def test_not_create_order_login_user_with_error_ingredients(self, login_user):
         access_token = login_user
-        selected_ingredients = {"ingredients": ["12345", "56789"]}
+        selected_ingredients = INVALID_INGREDIENTS
         create_order_response = OrderMethod.create_order(access_token, selected_ingredients)
         with allure.step("Проверяем статус кода ответа"):
             assert create_order_response.status_code == 500

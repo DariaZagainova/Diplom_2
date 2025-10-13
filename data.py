@@ -27,3 +27,5 @@ class UserMessageMistake:
     "message": "email or password are incorrect"
     }
     
+INVALID_INGREDIENTS = {"ingredients": ["12345", "56789"]}
+LOGIN_ERROR_FIELD = '12345'

@@ -1,7 +1,7 @@
 import pytest
 import allure
 from methods.user_methods import UserMethod
-from data import UserMessageMistake
+from data import UserMessageMistake, LOGIN_ERROR_FIELD
 
 @allure.sub_suite('class TestUserLogin: Логин пользователя')
 class TestUserLogin:
@@ -25,7 +25,7 @@ class TestUserLogin:
     @pytest.mark.parametrize('error_field', ['email', 'password'])
     def test_user_cannot_login_with_error_login_or_password(self, create_user, error_field):
         user_data_for_login = create_user['user_data_for_login'].copy()
-        user_data_for_login[error_field] = '12345'
+        user_data_for_login[error_field] = LOGIN_ERROR_FIELD
         login_user_response = UserMethod.login_user(user_data_for_login)
         with allure.step("Проверяем статус кода ответа"):
             assert login_user_response.status_code == 401
