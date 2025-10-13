@@ -5,6 +5,10 @@ class OrderMessageMistake:
     "message": "Ingredient ids must be provided"
     }
 
+    UNAUTHORIZED_ERROR = {
+        "success": False,
+        "message": "You should be authorised"
+    }
 
 class UserMessageMistake:
 

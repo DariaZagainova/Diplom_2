@@ -29,6 +29,8 @@ class TestOrderCreate:
         create_order_response = OrderMethod.create_order(None, selected_ingredients)
         with allure.step("Проверяем статус кода ответа"):
             assert create_order_response.status_code == 403
+        with allure.step("Проверяем сообщение об ошибке"):
+            assert create_order_response.json() == OrderMessageMistake.UNAUTHORIZED_ERROR
 
     @allure.title('Cоздание заказа с авторизацией и без игредиентов')
     @allure.description('Нельзя создать заказ, если пользователь авторизован, но в заказ не добавлены ингредиенты')
@@ -58,3 +60,5 @@ class TestOrderCreate:
         create_order_response = OrderMethod.create_order(access_token, selected_ingredients)
         with allure.step("Проверяем статус кода ответа"):
             assert create_order_response.status_code == 500
+        with allure.step("Проверяем сообщениие об ошибке"):
+            assert "Internal Server Error" in create_order_response.text

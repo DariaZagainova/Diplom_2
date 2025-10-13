@@ -1,4 +1,4 @@
-BASE_URL = "https://stellarburgers.nomoreparties.site"
+BASE_URL = "https://stellarburgers.education-services.ru"
 
 # Пользователь
 URL_CREATE_USER = f"{BASE_URL}/api/auth/register" # Создание пользователя
